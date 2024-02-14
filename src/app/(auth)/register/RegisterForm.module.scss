@@ -1,0 +1,11 @@
+.registerForm {
+	@apply flex flex-col w-full gap-5;
+}
+
+.inputField {
+	@apply hidden;
+}
+
+.inputField.active {
+	@apply flex flex-col gap-1;
+}
