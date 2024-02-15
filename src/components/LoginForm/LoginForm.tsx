@@ -1,4 +1,5 @@
 'use client'
+import AuthService from '@/services/auth.service';
 import Button from '@/ui/Button';
 import { Field, Form, Formik } from 'formik';
 import { useState } from 'react';
@@ -9,6 +10,10 @@ interface LoginFormProps {
 }
  
 const LoginForm: React.FC<LoginFormProps> = () => {
+
+    const login = async(email: string, password: string) => {
+        await AuthService.login({email, password})
+    }
 
     const registerSecondStepValidationSchema = Yup.object().shape({
         email: Yup.string()
@@ -25,7 +30,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
             <Formik
               initialValues={{ email: '', password: '' }}
               onSubmit={(values) =>  {
-                console.log(values);
+                login(values.email, values.password);
               }}
               validationSchema = {registerSecondStepValidationSchema}>
                 {({errors}) => (

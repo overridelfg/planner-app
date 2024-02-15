@@ -1,8 +1,10 @@
 'use client'
 
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useState, useCallback } from "react";
 import RegisterStepOne from "./RegisterStepOne/RegisterStepOne";
 import RegisterStepTwo from "./RegisterStepTwo/RegisterStepTwo";
+import AuthService from "@/services/auth.service";
+import { IRegisterForm } from "@/types/auth.types";
 
 interface RegisterFormProps extends PropsWithChildren{
     
@@ -19,19 +21,23 @@ type RegisterStepsType = 1 | 2;
 const RegisterForm: React.FC<RegisterFormProps> = () => {
 
     const [currentStep, setCurrentStep] = useState<RegisterStepsType>(1);
-	const [registerDto, setRegisterDto] = useState<IRegisterFormValues>({
+	const [registerDto, setRegisterDto] = useState<IRegisterForm>({
 		email: '',
 		username: '',
 		password: ''
 	})
 
-    const handleNextStep = (data: {[key in keyof IRegisterFormValues]?: string}) => {
-        
+    const registerRequest = async (userData: IRegisterForm) => {
+        await AuthService.signIn(userData)
+    }
+
+    const handleNextStep = (data: {[key in keyof IRegisterForm]?: string}) => {
+
         setRegisterDto(prevState => ({...prevState, ...data}));
         if(currentStep === 1) {
             setCurrentStep(2);
         }else {
-            
+            registerRequest({...registerDto, ...data});
         }
     }
 

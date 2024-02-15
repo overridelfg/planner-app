@@ -3,16 +3,10 @@ import { useState } from 'react'
 import * as Yup from 'yup'
 
 import Button from '@/ui/Button'
-
-interface IRegisterFormValues {
-	email: string
-	username: string
-	password: string
-}
-
+import { IRegisterForm } from '@/types/auth.types'
 interface RegisterStepTwoProps {
 	handleNextStep: (data: {
-		[key in keyof IRegisterFormValues]?: string
+		[key in keyof IRegisterForm]?: string
 	}) => void
 }
 

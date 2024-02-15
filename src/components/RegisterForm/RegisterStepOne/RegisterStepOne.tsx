@@ -3,16 +3,12 @@ import { useState } from 'react'
 import * as Yup from 'yup'
 
 import Button from '@/ui/Button'
-
-interface IRegisterFormValues {
-	email: string
-	username: string
-	password: string
-}
+import { IRegisterForm } from '@/types/auth.types'
+import AuthService from '@/services/auth.service'
 
 interface RegisterStepOneProps {
 	handleNextStep: (data: {
-		[key in keyof IRegisterFormValues]?: string
+		[key in keyof IRegisterForm]?: string
 	}) => void
 }
 
@@ -45,14 +41,24 @@ const RegisterStepOne: React.FC<RegisterStepOneProps> = ({
 		}
 	}
 
+	const checkEmail = async(email: string) => {
+ 		await AuthService.checkEmail(email).then((res) => {
+			if(res === 'success') {
+				setCurrentStep(2);
+			}else {
+
+			}
+		});
+	}
+
 	return (
 		<>
 			<Formik
 				initialValues={{ email: '' }}
 				onSubmit={values => {
 					if (currentStep === 1) {
-						setCurrentStep(2)
-						return
+						checkEmail(values.email);
+						return;
 					}
 
 					if (loginCode === '111111') {
