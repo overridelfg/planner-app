@@ -1,5 +1,5 @@
-import LoginForm from '@/components/LoginForm/LoginForm';
-import RegisterForm from '@/components/RegisterForm/RegisterForm'
+import LoginForm from "@/components/Auth/LoginForm/LoginForm";
+
 
 interface LoginProps {}
 

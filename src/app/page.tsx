@@ -1,32 +1,34 @@
 'use client'
+import LoginForm from '@/components/Auth/LoginForm/LoginForm';
+import DashboardLayout from '@/components/Dashboard/dashboard-layout';
 import { getAccessToken, getUserFromStorage } from '@/services/auth.helper'
 import Button from '@/ui/Button'
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function Main() {
 
-	const router = useRouter();
-	
-
 	const getUser = async () => {
 		await getUserFromStorage().then((user) => {
 			if(user == null) {
-				router.push('/home')
+				return <LoginForm/>
 			}else {
-				router.push('/login')
+				return <DashboardLayout/>
 			}
 		});
-	}
+	};
 
-	useEffect(() => {
-		getUser();
-	}, [])
+	const user = getUser();
+	if(user === null) {
+		redirect('/login')
+	}else {
+		redirect('/home')
+	}
 
 
 	return (
 		<div>
-			<Button>Hello</Button>
+			
 		</div>
 	)
 }
