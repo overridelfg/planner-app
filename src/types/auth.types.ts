@@ -1,25 +1,25 @@
 export interface ILoginForm {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export interface IRegisterForm {
-    email: string;
-    username: string;
-    password: string;
+  email: string;
+  username: string;
+  password: string;
 }
 
 export interface IUser {
-    _id: string;
-    name: string;
-    email: string;
+  _id: string;
+  name: string;
+  email: string;
 }
 
 export interface ITokens {
-    accessToken: string;
+  accessToken: string;
 }
 
 export interface IAuthResponse {
-    tokens: ITokens;
-    user: IUser;
+  tokens: ITokens;
+  user: IUser;
 }

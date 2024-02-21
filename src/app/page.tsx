@@ -1,34 +1,14 @@
-'use client'
-import LoginForm from '@/components/Auth/LoginForm/LoginForm';
-import DashboardLayout from '@/components/Dashboard/dashboard-layout';
-import { getAccessToken, getUserFromStorage } from '@/services/auth.helper'
-import Button from '@/ui/Button'
-import { redirect, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import LoginForm from "@/components/Auth/LoginForm/LoginForm";
+import DashboardLayout from "@/components/Dashboard/dashboard-layout";
+import { getAccessToken, getUserFromStorage } from "@/services/auth.helper";
+import { IUser } from "@/types/auth.types";
+import Button from "@/ui/Button";
+import { GetServerSideProps } from "next";
+import { redirect, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function Main() {
+const Main: React.FC = async () => {
+  return <div>hi</div>;
+};
 
-	const getUser = async () => {
-		await getUserFromStorage().then((user) => {
-			if(user == null) {
-				return <LoginForm/>
-			}else {
-				return <DashboardLayout/>
-			}
-		});
-	};
-
-	const user = getUser();
-	if(user === null) {
-		redirect('/login')
-	}else {
-		redirect('/home')
-	}
-
-
-	return (
-		<div>
-			
-		</div>
-	)
-}
+export default Main;

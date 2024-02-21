@@ -1,9 +1,9 @@
-import RegisterForm from "@/components/Auth/RegisterForm/RegisterForm"
+import RegisterForm from "@/components/Auth/RegisterForm/RegisterForm";
 
 interface RegisterProps {}
 
 const Register: React.FC<RegisterProps> = () => {
-	return <RegisterForm />
-}
+  return <RegisterForm />;
+};
 
-export default Register
+export default Register;
