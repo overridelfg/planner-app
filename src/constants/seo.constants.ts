@@ -1,1 +1,1 @@
-export const SITE_NAME = "Planner";
+export const SITE_NAME = "HETPlanner";

@@ -11,7 +11,7 @@ const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   return (
     <button
       className={cn(
-        "rounded-sm bg-primary w-full p-2 hover:bg-primaryHover transition ease-in",
+        "rounded-sm bg-primary w-full p-2 hover:bg-primaryHover transition ease-in flex justify-center items-center",
         className,
       )}
       onClick={rest.onClick}

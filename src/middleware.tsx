@@ -16,11 +16,11 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!accessToken) {
-    return NextResponse.redirect(new URL("/login", url));
+  if (!accessToken && !isAuthPage) {
+    return NextResponse.redirect(new URL("/", url));
   }
 
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/", "/login", "/register", "/home"] };
+export const config = { matcher: ["/login", "/register", "/home"] };

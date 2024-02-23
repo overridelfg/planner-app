@@ -16,6 +16,7 @@ const config: Config = {
       sidebar: "#141515",
       grey: "rgb(156 163 175)",
       error: "rgb(220 38 38);",
+      white: "#fff"
     },
     fontSize: {
       xs: "0.8rem",
@@ -46,7 +47,7 @@ const config: Config = {
       xl: "1200px",
       "xl-max": { max: "1200px" },
       "2xl": "1320px",
-      "2xl-max": { max: "1600px" },
+      "2xl-max": { max: "1320px" },
       "3xl": "1600px",
       "3xl-max": { max: "1600px" },
       "4xl": "1850px",

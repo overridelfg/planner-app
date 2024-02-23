@@ -27,6 +27,11 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+main {
+  max-width: 1320px;
+  width: 100%;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

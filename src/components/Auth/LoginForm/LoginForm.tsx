@@ -23,6 +23,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     route.replace("/home");
   }
 
+  console.log("co")
+
   const loginReq = (email: string, password: string) => {
     login({ email, password });
     // return diAuthService.login({email, password}).then((user) => {

@@ -5,6 +5,8 @@ import "./globals.scss";
 import { SITE_NAME } from "@/constants/seo.constants";
 import StoreProvider from "./StoreProvider";
 
+import cn from 'clsx';
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'flex flex-col relative items-center min-h-screen justify-between')}>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>

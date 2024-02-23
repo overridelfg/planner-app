@@ -1,5 +1,5 @@
 import { PayloadAction, SerializedError, createSlice } from "@reduxjs/toolkit";
-import { login, logout, signIn } from "./user.actions";
+import { checkEmail, login, logout, signIn } from "./user.actions";
 import { IUser } from "@/types/auth.types";
 import { getStoreLocal } from "@/utils/local-storage";
 
@@ -8,6 +8,7 @@ export interface IInitialState {
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
+  isEmailValid: boolean;
   message: string;
 }
 
@@ -16,6 +17,7 @@ const initialState: IInitialState = {
   isError: false,
   isLoading: false,
   isSuccess: false,
+  isEmailValid: false,
   message: "",
 };
 
@@ -62,6 +64,24 @@ export const userSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message = "error";
+      })
+      .addCase(checkEmail.pending, (state) => {
+        state.isLoading = true;
+        state.isEmailValid = false;
+        state.isError = false;
+        state.message = "";
+      })
+      .addCase(checkEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isEmailValid = true;
+        state.isError = false;
+        state.message = 'success';
+      })
+      .addCase(checkEmail.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isEmailValid = false;
+        state.isError = true;
+        state.message = payload ?? "error";
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = null;
