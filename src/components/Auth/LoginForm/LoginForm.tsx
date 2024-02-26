@@ -9,7 +9,7 @@ import { useActions } from "@/hooks/useActions";
 import { useAuthSelector } from "@/hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { useAppDispatch } from "@/store/store";
-import Loader from '@/assets/loader.svg'
+import Loader from "@/assets/loader.svg";
 import Image from "next/image";
 
 interface LoginFormProps {}
@@ -23,7 +23,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     route.replace("/home");
   }
 
-  console.log("co")
+  console.log("co");
 
   const loginReq = (email: string, password: string) => {
     login({ email, password });
@@ -88,19 +88,20 @@ const LoginForm: React.FC<LoginFormProps> = () => {
               ) : null}
             </div>
             <Button
-            type="submit"
-             className={"flex w-full h-10 justify-center gap-2"}
-             disabled = {isLoading} >
-                {isLoading ? (
-                    <Image
-                    priority
-                    src={Loader}
-                    width={24}
-                    height={24}
-                    alt="Loading"
-                    />
-                ) : null}
-                <h2>Log in</h2>
+              type="submit"
+              className={"flex w-full h-10 justify-center gap-2"}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <Image
+                  priority
+                  src={Loader}
+                  width={24}
+                  height={24}
+                  alt="Loading"
+                />
+              ) : null}
+              <h2>Log in</h2>
             </Button>
             <label className="text-error">{isError && message}</label>
           </Form>

@@ -2,7 +2,7 @@ import LoginForm from "@/components/Auth/LoginForm/LoginForm";
 
 interface LoginProps {}
 
-const Login: React.FC<LoginProps> = async() => {
+const Login: React.FC<LoginProps> = async () => {
   return <LoginForm />;
 };
 

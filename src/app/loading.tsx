@@ -1,13 +1,7 @@
-interface LoadingPageProps {
-    
-}
- 
+interface LoadingPageProps {}
+
 const LoadingPage: React.FC<LoadingPageProps> = () => {
-    return (
-        <div>
-            Loading...
-        </div>
-    );
-}
- 
+  return <div>Loading...</div>;
+};
+
 export default LoadingPage;

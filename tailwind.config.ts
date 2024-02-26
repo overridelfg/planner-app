@@ -16,7 +16,9 @@ const config: Config = {
       sidebar: "#141515",
       grey: "rgb(156 163 175)",
       error: "rgb(220 38 38);",
-      white: "#fff"
+      white: "#fff",
+      black: "rgb(0, 0, 0);",
+      transparent: "transparent"
     },
     fontSize: {
       xs: "0.8rem",

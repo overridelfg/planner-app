@@ -16,7 +16,8 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!accessToken && !isAuthPage) {
+  console.log(accessToken);
+  if (!accessToken) {
     return NextResponse.redirect(new URL("/", url));
   }
 

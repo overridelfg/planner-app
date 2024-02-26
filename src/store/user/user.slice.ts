@@ -75,7 +75,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isEmailValid = true;
         state.isError = false;
-        state.message = 'success';
+        state.message = "success";
       })
       .addCase(checkEmail.rejected, (state, { payload }) => {
         state.isLoading = false;
