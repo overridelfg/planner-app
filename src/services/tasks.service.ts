@@ -3,7 +3,6 @@ import { useAuthSelector } from "@/hooks/useAuth";
 import { TypeTaskFormState, type ITasksResponse } from "@/types/tasks.type";
 import { getStoreLocal } from "@/utils/local-storage";
 
-
 export class TasksService {
   async getTasks(userId: string) {
     const response = await axiosClassic.get<ITasksResponse[] | undefined>(
@@ -22,9 +21,9 @@ export class TasksService {
     return response.data;
   }
 
-  async updateTask(taskId: string, userId: string, data: TypeTaskFormState) {
+  async updateTask(userId: string, taskId: string, data: TypeTaskFormState) {
     const response = await axiosClassic.put<ITasksResponse>(
-      `tasks/update${userId}/${taskId}`,
+      `tasks/update/${userId}/${taskId}`,
       data,
     );
 

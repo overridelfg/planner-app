@@ -8,12 +8,9 @@ export function useDeleteTask(taskId: string) {
 
   const { user } = useAuthSelector();
 
-  const {isLoading, mutate: deleteTask } = useMutation({
+  const { isLoading, mutate: deleteTask } = useMutation({
     mutationKey: ["delete task", taskId],
-    mutationFn: ({
-      
-    }: {
-    }) => {
+    mutationFn: ({}: {}) => {
       return TasksService.deleteTask(user!._id, taskId);
     },
     onSuccess() {

@@ -3,10 +3,9 @@ import { useUpdateTask } from "./useUpdateTask";
 import { DropResult } from "@hello-pangea/dnd";
 import { FILTERS } from "../columns.data";
 
-export function useTaskDnd(taskId: string) {
-  const { updateTask } = useUpdateTask(taskId);
+export function useTaskDnd() {
 
-  const { user } = useAuthSelector();
+  const { updateTask } = useUpdateTask();
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -15,21 +14,28 @@ export function useTaskDnd(taskId: string) {
 
     if (destinationRowId === result.source.droppableId) return;
 
+
+
     if (destinationRowId === "completed") {
       updateTask({
         data: {
           isCompleted: true,
         },
+        taskId: result.draggableId
       });
     }
 
     const newCreatedAt = FILTERS[destinationRowId].format();
+
+
     updateTask({
       data: {
         createdAt: newCreatedAt,
         isCompleted: false,
       },
+      taskId: result.draggableId
     });
+
   };
 
   return { onDragEnd };
