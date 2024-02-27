@@ -63,7 +63,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = "error";
+        state.message = payload ?? "error";
       })
       .addCase(checkEmail.pending, (state) => {
         state.isLoading = true;
@@ -75,7 +75,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isEmailValid = true;
         state.isError = false;
-        state.message = "success";
+        state.message = action.payload;
       })
       .addCase(checkEmail.rejected, (state, { payload }) => {
         state.isLoading = false;

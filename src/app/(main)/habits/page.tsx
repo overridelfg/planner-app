@@ -1,7 +1,11 @@
-interface DashboardProps {}
-
+interface DashboardProps {
+    
+}
+ 
 const Dashboard: React.FC<DashboardProps> = () => {
-  return <div>Hi</div>;
-};
-
+    return (<div>
+        Dash
+    </div>);
+}
+ 
 export default Dashboard;

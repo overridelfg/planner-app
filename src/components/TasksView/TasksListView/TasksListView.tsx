@@ -1,28 +1,44 @@
-"use client"
+"use client";
 
 import Checkbox from "@/ui/Checkbox";
 import { useTasks } from "../hooks/useTasks";
 import AddTaskButton from "./AddTaskButton";
-
+import DatePicker from "../DatePicker/DatePicker";
+import { useEffect, useState } from "react";
+import { InputField } from "@/ui/InputField";
+import SingleSelect, { IOption } from "./SingleSelect";
+import TaskListRow from "./TaskListRow";
 
 interface TasksListViewProps {}
 
+const data: IOption[] = [
+  {
+    value: "low",
+    label: "Low",
+  },
+  {
+    value: "medium",
+    label: "Medium",
+  },
+  {
+    value: "high",
+    label: "High",
+  },
+];
+
 const TasksListView: React.FC<TasksListViewProps> = () => {
+  const { tasksList, setTasksList } = useTasks();
 
-    const {tasksList} = useTasks();
 
-    console.log(tasksList);
-    
   return (
     <div>
-        <Checkbox/>
-      {/* <InputField
-        className="text-bg bg-black"
-        type="text"
-        id="taks1"
-        placeholder="Add task..."
-      /> */}
-      <AddTaskButton/>
+      {tasksList && tasksList.map((task) => (
+        <TaskListRow
+        key={task._id}
+        item={task}
+        setItems={setTasksList}
+        />
+      ))}
     </div>
   );
 };

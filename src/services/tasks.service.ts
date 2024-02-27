@@ -3,28 +3,38 @@ import { useAuthSelector } from "@/hooks/useAuth";
 import { TypeTaskFormState, type ITasksResponse } from "@/types/tasks.type";
 import { getStoreLocal } from "@/utils/local-storage";
 
+
 export class TasksService {
   async getTasks(userId: string) {
-
-    const response = await axiosClassic.get<ITasksResponse[] | undefined>(`tasks/all/${userId}`);
+    const response = await axiosClassic.get<ITasksResponse[] | undefined>(
+      `tasks/all/${userId}`,
+    );
 
     return response.data;
   }
 
-  async createTask() {
-    const response = await axiosClassic.post<ITasksResponse>("tasks/create");
+  async createTask(userId: string, data: TypeTaskFormState) {
+    const response = await axiosClassic.post<ITasksResponse>(
+      `tasks/create/${userId}`,
+      data,
+    );
 
     return response.data;
   }
 
   async updateTask(taskId: string, userId: string, data: TypeTaskFormState) {
-    const response = await axiosClassic.put<ITasksResponse>(`auth/update${userId}/${taskId}`, data);
+    const response = await axiosClassic.put<ITasksResponse>(
+      `tasks/update${userId}/${taskId}`,
+      data,
+    );
 
     return response.data;
   }
 
-  async deleteTask() {
-    const response = await axiosClassic.delete<ITasksResponse>("auth/delete");;
+  async deleteTask(userId: string, taskId: string) {
+    const response = await axiosClassic.delete<ITasksResponse>(
+      `tasks/delete/${userId}/${taskId}`,
+    );
 
     return response.data;
   }

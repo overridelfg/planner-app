@@ -18,7 +18,7 @@ const config: Config = {
       error: "rgb(220 38 38);",
       white: "#fff",
       black: "rgb(0, 0, 0);",
-      transparent: "transparent"
+      transparent: "transparent",
     },
     fontSize: {
       xs: "0.8rem",

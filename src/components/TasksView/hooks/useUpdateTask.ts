@@ -1,3 +1,4 @@
+import { useAuthSelector } from "@/hooks/useAuth";
 import TasksService from "@/services/tasks.service";
 import { TypeTaskFormState } from "@/types/tasks.type";
 import { useMutation, useQueryClient } from "react-query";
@@ -5,10 +6,12 @@ import { useMutation, useQueryClient } from "react-query";
 export function useUpdateTask(taskId: string) {
     const queryClient = useQueryClient();
 
-    useMutation({
+    const { user } = useAuthSelector();
+
+    const {mutate: updateTask} = useMutation({
         mutationKey: ['update task', taskId],
-        mutationFn: ({ userId, taskId, data } : {userId: string; taskId: string, data: TypeTaskFormState}) => {
-            return TasksService.updateTask(userId, taskId, data)
+        mutationFn: ({ data } : {data: TypeTaskFormState}) => {
+            return TasksService.updateTask(user!._id, taskId, data)
         },
         onSuccess(){
             queryClient.invalidateQueries({
@@ -16,4 +19,7 @@ export function useUpdateTask(taskId: string) {
             });
         }
     })
+
+    return { updateTask }
+    
 }
