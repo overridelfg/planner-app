@@ -60,7 +60,7 @@ const TaskKanbanRow: React.FC<TaskKanbanRowProps> = ({ item, setItems }) => {
         control={control}
         name="createdAt"
         render={({ field: { value, onChange } }) => (
-          <DatePicker value={value || ""} onChange={onChange} />
+          <DatePicker value={value || ""} onChange={onChange} position="right" />
         )}
       />
       <Controller

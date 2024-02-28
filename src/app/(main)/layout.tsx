@@ -9,7 +9,7 @@ const Layout: React.FC = ({ children }: PropsWithChildren<unknown>) => {
       <SidebarMenu />
       <div className="flex w-full flex-col px-10 py-4 gap-5 overflow-hidden">
         <HeaderMenu />
-        <div className="flex flex-col">{children}</div>
+        <div className="flex flex-col flex-grow-1 h-full">{children}</div>
       </div>
     </main>
   );

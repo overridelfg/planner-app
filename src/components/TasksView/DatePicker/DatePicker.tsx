@@ -29,7 +29,7 @@ interface DatePickerProps {
 const DatePicker: React.FC<DatePickerProps> = ({
   onChange,
   value,
-  position = "right",
+  position = "left",
 }) => {
   const [selected, setSelected] = useState<Date>();
   const { isShow, setIsShow, ref } = useOutside();
@@ -64,7 +64,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
       )}
       {isShow && (
         <div
-          className="absolute p-2.5 bg-sidebar z-10 shadow rounded-sm -left-[12rem]"
+          className={`absolute p-2.5 bg-sidebar z-10 shadow rounded-sm  ${position === 'left' ? '-left-[12rem]' : '-right-[12rem]'}`}
           style={{ top: "calc(100% + .7rem)" }}
         >
           <DayPicker

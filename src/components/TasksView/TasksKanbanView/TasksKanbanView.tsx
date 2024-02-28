@@ -16,7 +16,7 @@ const TasksKanbanView: React.FC<TasksKanbanViewProps> = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd} key={'board'}>
-            <div className="flex gap-5 overflow-auto">
+            <div className="flex gap-5 overflow-auto h-full">
                 {COLUMNS.map((filter, index) => (
                     <TasksKabanColumn
                     tasksList={tasksList}

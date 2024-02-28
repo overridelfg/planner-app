@@ -13,7 +13,7 @@ const TasksPage: React.FC<TasksPageProps> = () => {
   const [tasksViewType, setTasksViewType] = useState<'list' | 'board'>('list');
 
   return (
-    <div>
+    <div className="h-full min-h-full">
       <SwitcherTasks setTasksViewType={setTasksViewType} taskViewType={tasksViewType}/>
       {tasksViewType === 'list' ? 
         <TaskListView key={'1'}/>
