@@ -1,3 +1,7 @@
+<img width="1785" alt="Снимок экрана 2024-02-28 в 17 45 09" src="https://github.com/KERELLL/better-with-planner-backend/assets/36132918/20d99e5c-ce42-46a4-b6f0-15046acb5d40">
+
+<img width="1792" alt="Снимок экрана 2024-02-28 в 17 45 50" src="https://github.com/KERELLL/better-with-planner-backend/assets/36132918/0cf6abe9-12f9-44e6-be46-fd4f4211013b">
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
