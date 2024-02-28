@@ -27,7 +27,6 @@ export function useTaskDnd() {
 
     const newCreatedAt = FILTERS[destinationRowId].format();
 
-
     updateTask({
       data: {
         createdAt: newCreatedAt,

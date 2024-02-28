@@ -23,4 +23,4 @@ export default async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/login", "/register", "/home"] };
+export const config = { matcher: ["/login", "/register", "/home", "/tasks"] };

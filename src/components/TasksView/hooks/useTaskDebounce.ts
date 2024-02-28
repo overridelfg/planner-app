@@ -25,7 +25,6 @@ export function useTaskDebounce(
 
   const debounceUpdateTask = useCallback(
     debounce((fromData: TypeTaskFormState) => {
-        console.log({ data: fromData})
       updateTask({ data: fromData, taskId: itemId});
     }, 500),
     [],
@@ -33,14 +32,15 @@ export function useTaskDebounce(
 
   useEffect(() => {
     const { unsubscribe } = watch((formData) => {
-        console.log({...formData})
       if (itemId) {
         debounceUpdateTask({
           ...formData,
           priority: formData.priority || undefined,
         });
       } else {
-        debounceCreateTask(formData);
+        if(formData.name) {
+          debounceCreateTask(formData);
+        }
       }
     });
 

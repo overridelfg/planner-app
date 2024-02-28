@@ -1,80 +1,30 @@
-"use client";
-
-import Checkbox from "@/ui/Checkbox";
+"use client"
+import { DragDropContext } from "@hello-pangea/dnd";
+import { useTaskDnd } from "../hooks/useTaskDnd";
 import { useTasks } from "../hooks/useTasks";
-import AddTaskButton from "./AddTaskButton";
-import DatePicker from "../DatePicker/DatePicker";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { InputField } from "@/ui/InputField";
-import SingleSelect, { IOption } from "./SingleSelect";
-import TaskListRow from "./TaskListRow";
-import { Draggable, Droppable } from "@hello-pangea/dnd";
-import { filterTasksByDate } from "../tasks.filter";
-import { ITasksResponse } from "@/types/tasks.type";
-import { FILTERS } from "../columns.data";
+import TasksListColumn from "./TasksListColumn";
+import { COLUMNS, FILTERS } from "../columns.data";
 
 interface TasksListViewProps {
-  value: string;
-  label: string;
-  tasksList: ITasksResponse[] | undefined;
-  setTasksList: Dispatch<SetStateAction<ITasksResponse[] | undefined>>
-  index: number;
+    
 }
+ 
+const TaskListView: React.FC<TasksListViewProps> = () => {
 
-const data: IOption[] = [
-  {
-    value: "low",
-    label: "Low",
-  },
-  {
-    value: "medium",
-    label: "Medium",
-  },
-  {
-    value: "high",
-    label: "High",
-  },
+    const {tasksList, setTasksList} = useTasks();
+    const { onDragEnd } = useTaskDnd()
 
-];
-
-const TasksListView: React.FC<TasksListViewProps> = ({value, label, tasksList, setTasksList, index }) => {
-
-
-  return (
-    <Droppable droppableId={value}>
-      {provided => (
-        <div
-        ref={provided.innerRef}
-        {...provided.droppableProps}>
-          <div>
-            <div className="w-full">{label}</div>
-            {filterTasksByDate(tasksList, value)?.map((item, index) => {
-              console.log(item, value);
-                return <Draggable
-                draggableId={item._id}
-                key={item._id}
-                index={index}>
-                  {provided => (
-                    <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    >
-                      <TaskListRow key={item._id} item={item} setItems={setTasksList} />
-                    </div>
-                  )}
-                </Draggable>
-          })}
-          </div>
-          {provided.placeholder}
-          {tasksList &&
-            (!tasksList?.some((task) => !task._id) && (
-              <AddTaskButton setItems={setTasksList} filterDate={FILTERS[value] ? FILTERS[value].format() : undefined}/>
+    return (
+        <DragDropContext onDragEnd={onDragEnd} key={'list'}>
+            {COLUMNS.map((filter, index) => (
+                <TasksListColumn
+                tasksList={tasksList}
+                setTasksList={setTasksList}
+                value={filter.value}
+                label={filter.label}/>
             ))}
-        </div>
-      )}
-      </Droppable>
-  );
-};
-
-export default TasksListView;
+        </DragDropContext>
+    );
+}
+ 
+export default TaskListView;

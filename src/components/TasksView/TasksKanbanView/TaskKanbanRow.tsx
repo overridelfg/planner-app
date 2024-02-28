@@ -4,18 +4,18 @@ import Checkbox from "@/ui/Checkbox";
 import { InputField } from "@/ui/InputField";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import DatePicker from "../DatePicker/DatePicker";
-import SingleSelect from "./SingleSelect";
 import { useDeleteTask } from "../hooks/useDeleteTask";
 import { GripVertical, Loader, Trash } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { useTaskDebounce } from "../hooks/useTaskDebounce";
+import SingleSelect from "../TasksListView/SingleSelect";
 
-interface TaskListRowProps {
+interface TaskKanbanRowProps {
   item: ITasksResponse;
   setItems: Dispatch<SetStateAction<ITasksResponse[] | undefined>>;
 }
 
-const TaskListRow: React.FC<TaskListRowProps> = ({ item, setItems }) => {
+const TaskKanbanRow: React.FC<TaskKanbanRowProps> = ({ item, setItems }) => {
   const { deleteTask, isLoading } = useDeleteTask(item._id);
 
   const {
@@ -35,24 +35,27 @@ const TaskListRow: React.FC<TaskListRowProps> = ({ item, setItems }) => {
   useTaskDebounce({ watch: watch, itemId: item._id });
 
   return (
-    <div className="flex justify-between items-center w-full gap-6 border-b">
-        <div>
+    <div className="flex flex-col justify-between items-start w-full gap-3 border mb-4 rounded-md relative p-4">
+        <div className="right-0 top-1 absolute">
             <GripVertical/>
         </div>
-      <Controller
-        control={control}
-        name="isCompleted"
-        render={({ field: { value, onChange } }) => (
-          <Checkbox onChange={onChange} checked={value} />
-        )}
-      />
-      <InputField
-        className = {`text-bg bg-black ${item.isCompleted ? 'line-through' : ''}`}
-        type="text"
-        id="taks1"
-        placeholder="Add task..."
-        {...register("name")}
-      />
+        <div className="flex justify-center items-center gap-3">
+            <Controller
+                control={control}
+                name="isCompleted"
+                render={({ field: { value, onChange } }) => (
+                <Checkbox onChange={onChange} checked={value} />
+                )}
+            />
+            <InputField
+                className = {`text-bg bg-black bg-sidebar ${item.isCompleted ? 'line-through' : ''}`}
+                type="text"
+                id="taks1"
+                placeholder="Add task..."
+                {...register("name")}
+            />
+        </div>
+        
       <Controller
         control={control}
         name="createdAt"
@@ -75,6 +78,7 @@ const TaskListRow: React.FC<TaskListRowProps> = ({ item, setItems }) => {
         )}
       />
       <button
+        className="self-end"
         onClick={() => {
           item._id
             ? deleteTask(item._id)
@@ -87,4 +91,4 @@ const TaskListRow: React.FC<TaskListRowProps> = ({ item, setItems }) => {
   );
 };
 
-export default TaskListRow;
+export default TaskKanbanRow;
