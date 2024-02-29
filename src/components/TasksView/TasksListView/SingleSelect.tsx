@@ -1,6 +1,7 @@
 import { useOutside } from "@/hooks/useOutside";
 import { X } from "lucide-react";
 import { useUpdateTask } from "../hooks/useUpdateTask";
+import Badge from "@/components/Badge/Badge";
 
 export interface IOption {
   value: string;
@@ -24,11 +25,13 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
 
   return (
     <div
-      className="relative min-w-36"
+      className="relative min-w-36 flex justify-center p-2"
       ref={ref as React.RefObject<HTMLDivElement>}
     >
-      <button type="button" onClick={() => setIsShow(!isShow)}>
-        {value ? value : "Click for select"}
+      <button onClick={() => setIsShow(!isShow)}>
+        <Badge color={value || ''}>
+         {value ? value : "Click for select"}
+        </Badge>
       </button>
       {value && (
         <button
@@ -49,13 +52,16 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
           {data.map((value) => {
             return (
               <div
+                className="flex flex-col gap-3 p-2"
                 key={value.value}
                 onClick={() => {
                   setIsShow(false);
                   onChange(value.value);
                 }}
               >
-                {value.label}
+                <Badge color={value.value || ''}>
+                  {value.label}
+                </Badge>
               </div>
             );
           })}

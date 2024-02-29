@@ -1,7 +1,9 @@
+import HabitsList from "@/components/HabitsList/HabitsList";
+
 interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = () => {
-  return <div>Dash</div>;
+  return <HabitsList/>;
 };
 
 export default Dashboard;

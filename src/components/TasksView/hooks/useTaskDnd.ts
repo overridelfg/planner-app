@@ -2,6 +2,8 @@ import { useAuthSelector } from "@/hooks/useAuth";
 import { useUpdateTask } from "./useUpdateTask";
 import { DropResult } from "@hello-pangea/dnd";
 import { FILTERS } from "../columns.data";
+import { Dispatch, SetStateAction } from "react";
+import { ITasksResponse } from "@/types/tasks.type";
 
 export function useTaskDnd() {
 
@@ -10,13 +12,14 @@ export function useTaskDnd() {
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
-    const destinationRowId = result.destination.droppableId;
+    const destinatiColumnId = result.destination.droppableId;
 
-    if (destinationRowId === result.source.droppableId) return;
+    if (destinatiColumnId === result.source.droppableId) return;
 
 
 
-    if (destinationRowId === "completed") {
+    if (destinatiColumnId === "completed") {
+
       updateTask({
         data: {
           isCompleted: true,
@@ -25,7 +28,7 @@ export function useTaskDnd() {
       });
     }
 
-    const newCreatedAt = FILTERS[destinationRowId].format();
+    const newCreatedAt = FILTERS[destinatiColumnId].format();
 
     updateTask({
       data: {
