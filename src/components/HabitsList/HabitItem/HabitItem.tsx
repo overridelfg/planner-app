@@ -1,7 +1,8 @@
 "use client"
 import { IHabitsResponse } from "@/types/habits.type";
-import { GripVertical, Trash } from "lucide-react";
+import { Edit, GripVertical, Trash } from "lucide-react";
 import { useDeleteHabit } from "../hooks/useDeleteHabits";
+import { useUpdateHabits } from "../hooks/useUpdateHabits";
 
 interface HabitItemProps {
     habit: IHabitsResponse
@@ -10,6 +11,7 @@ interface HabitItemProps {
 const HabitItem: React.FC<HabitItemProps> = ({habit}) => {
 
     const { deleteHabit } = useDeleteHabit(habit._id);
+    const { updateHabit } = useUpdateHabits();
 
     return (<div className="rounded-sm flex p-4 gap-3 justify-between" style={{backgroundColor: habit.color}}>
         <div>
@@ -19,12 +21,18 @@ const HabitItem: React.FC<HabitItemProps> = ({habit}) => {
             <div>{habit.name}</div>
             <div>{"(" + habit.duration + "min)"}</div>
         </div>
-        <button
-        onClick={() => {
-            deleteHabit();
-        }}>
-            <Trash/>
-        </button>
+        <div className="flex gap-3">
+            <button>
+                <Edit/>
+            </button>
+            <button
+            onClick={() => {
+                deleteHabit();
+            }}>
+                <Trash/>
+            </button>
+        </div>
+
     </div>);
 }
  

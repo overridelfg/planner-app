@@ -5,7 +5,7 @@ import { ITasksResponse } from "@/types/tasks.type"
 import { useMutation, useQueryClient } from "react-query"
 
 
-const useUpdateHabits = () => {
+export const useUpdateHabits = () => {
 
     const { user } = useAuthSelector();
     const queryClient = useQueryClient();
