@@ -39,7 +39,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           ref={ref}
           disabled={disabled}
           className={cn(
-            `flex w-full p-3 item-center justify-center rounded-md borderborder-grey text-white outline-none
+            `flex w-full p-3 item-center justify-center rounded-md border-grey text-white outline-none
             duration-500 transition-colors focus:border-primary`,
             className,
           )}

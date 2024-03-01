@@ -1,6 +1,7 @@
+"use client"
 import { useOutside } from "@/hooks/useOutside";
 import { X } from "lucide-react";
-import { useUpdateTask } from "../hooks/useUpdateTask";
+import { useUpdateTask } from "../TasksView/hooks/useUpdateTask";
 import Badge from "@/components/Badge/Badge";
 
 export interface IOption {
@@ -25,16 +26,17 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
 
   return (
     <div
-      className="relative min-w-36 flex justify-center p-2"
+      className="relative min-w-36 flex self-start p-2"
       ref={ref as React.RefObject<HTMLDivElement>}
     >
-      <button onClick={() => setIsShow(!isShow)}>
-        <Badge color={value || ''}>
+      <button onClick={() => setIsShow(!isShow)} type="button">
+        <Badge color={value || ''} style = {isColorSelect ? {backgroundColor: value} : {}}>
          {value ? value : "Click for select"}
         </Badge>
       </button>
       {value && (
         <button
+          type="button"
           className="absolute -top-2 -right-4 opacity-30 hover:opacity-100 transition-opacity"
           onClick={() => {
             onChange("");
@@ -59,7 +61,8 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                   onChange(value.value);
                 }}
               >
-                <Badge color={value.value || ''}>
+                <Badge color={value.value || ''}
+                style = {isColorSelect ? {backgroundColor: value.value} : {}}>
                   {value.label}
                 </Badge>
               </div>

@@ -8,7 +8,7 @@ import { useDeleteTask } from "../hooks/useDeleteTask";
 import { GripVertical, Loader, Trash } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { useTaskDebounce } from "../hooks/useTaskDebounce";
-import SingleSelect from "../TasksListView/SingleSelect";
+import SingleSelect from "../../SingleSelect/SingleSelect";
 
 interface TaskKanbanRowProps {
   item: ITasksResponse;

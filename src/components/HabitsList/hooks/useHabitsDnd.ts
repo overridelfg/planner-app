@@ -28,7 +28,6 @@ export const useHibitsDnd = (setHabitsList: Dispatch<SetStateAction<IHabitsRespo
             copyHabitsList[i].order = i + 1;
         }
 
-
         setHabitsList(copyHabitsList);
 
         updateHabitsOrder({ids, tasksIds});

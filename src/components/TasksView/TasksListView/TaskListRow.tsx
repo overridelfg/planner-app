@@ -4,7 +4,7 @@ import Checkbox from "@/ui/Checkbox";
 import { InputField } from "@/ui/InputField";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import DatePicker from "../DatePicker/DatePicker";
-import SingleSelect from "./SingleSelect";
+import SingleSelect from "../../SingleSelect/SingleSelect";
 import { useDeleteTask } from "../hooks/useDeleteTask";
 import { GripVertical, Loader, Trash } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";

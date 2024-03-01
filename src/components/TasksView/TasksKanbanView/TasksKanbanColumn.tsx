@@ -9,7 +9,7 @@ import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { filterTasksByDate } from "../tasks.filter";
 import { ITasksResponse } from "@/types/tasks.type";
 import { FILTERS } from "../columns.data";
-import { IOption } from "../TasksListView/SingleSelect";
+import { IOption } from "../../SingleSelect/SingleSelect";
 import AddTaskKanbanButton from "./AddTaskKanbanButton";
 import TaskKanbanRow from "./TaskKanbanRow";
 

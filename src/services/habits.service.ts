@@ -6,7 +6,10 @@ class HabitsService {
 
     async getHabits(userId: string) {
         const response = await axiosClassic.get<IHabitsResponse[] | undefined>(`habits/all/${userId}`);
-
+        return response.data;
+    }
+    async createHabit(userId: string, data: TypeHabitFormState) {
+        const response = await axiosClassic.post<TypeHabitFormState>(`habits/create/${userId}`, data);
         return response.data;
     }
 
@@ -19,6 +22,12 @@ class HabitsService {
         const response = await axiosClassic.put<{ids: number[]}>(`habits/updateOrder/${userId}`, data);
         return response.data;
     }
+
+    async deleteHabit(userId: string, taskId: string) {
+        const response = await axiosClassic.delete(`habits/delete/${userId}/${taskId}`);
+        return response.data;
+    }
+
 
 }
 

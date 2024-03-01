@@ -6,7 +6,7 @@ import AddTaskButton from "./AddTaskButton";
 import DatePicker from "../DatePicker/DatePicker";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { InputField } from "@/ui/InputField";
-import SingleSelect, { IOption } from "./SingleSelect";
+import SingleSelect, { IOption } from "../../SingleSelect/SingleSelect";
 import TaskListRow from "./TaskListRow";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { filterTasksByDate } from "../tasks.filter";
