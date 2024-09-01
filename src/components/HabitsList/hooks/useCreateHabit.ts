@@ -13,7 +13,10 @@ export function useCreateHabit() {
   const { mutate: createHabit } = useMutation({
     mutationKey: ["create habit"],
     mutationFn: ({ data }: { data: TypeHabitFormState }) => {
-      return HabitsService.createHabit(user!._id, data);
+      return HabitsService.createHabit(user!._id, {
+        ...data,
+        userId: user!._id,
+      });
     },
     onSuccess() {
       queryClient.invalidateQueries({

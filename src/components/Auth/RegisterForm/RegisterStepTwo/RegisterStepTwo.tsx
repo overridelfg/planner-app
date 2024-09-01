@@ -14,7 +14,7 @@ const RegisterStepTwo: React.FC<RegisterStepTwoProps> = ({
   handleNextStep,
 }) => {
   const registerSecondStepValidationSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
       .min(4, "Min 4 letters")
       .required("This field is required."),
     password: Yup.string()
@@ -24,11 +24,11 @@ const RegisterStepTwo: React.FC<RegisterStepTwoProps> = ({
 
   return (
     <Formik
-      initialValues={{ username: "", password: "" }}
+      initialValues={{ name: "", password: "" }}
       onSubmit={(values) => {
         handleNextStep({
           password: values.password,
-          username: values.username,
+          name: values.name,
         });
       }}
       validateOnChange={false}
@@ -42,13 +42,13 @@ const RegisterStepTwo: React.FC<RegisterStepTwoProps> = ({
             </label>
             <Field
               className="p-2 text-bg rounded-sm"
-              id="username"
-              name="username"
+              id="namr"
+              name="name"
               type="text"
               placeholder="Enter your username..."
             />
-            {errors.username ? (
-              <label className="text-xs text-error">{errors.username}</label>
+            {errors.name ? (
+              <label className="text-xs text-error">{errors.name}</label>
             ) : null}
           </div>
           <div className={`flex-col gap-1 flex`}>

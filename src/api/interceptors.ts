@@ -2,7 +2,7 @@ import axios, { AxiosInterceptorOptions, CreateAxiosDefaults } from "axios";
 import { getAccessToken } from "../services/auth.helper";
 
 export const options: CreateAxiosDefaults = {
-  baseURL: "http://localhost:3002/",
+  baseURL: "http://localhost:3000/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -29,7 +29,7 @@ axiosWithAuth.interceptors.response.use(
 
     // if(originalRequest)
     // throw error
-  },
+  }
 );
 
 export { axiosClassic, axiosWithAuth };
